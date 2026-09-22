@@ -2,7 +2,7 @@
 
 A browser-based sales analytics dashboard built to go beyond charts: it automatically flags business problems (loss-making products, harmful discount thresholds, churn-risk customers) and lets you simulate pricing decisions before making them.
 
-**Live demo:** add your published link here (see "Deploying" below)
+**Live demo:** https://aditisisodia143-ai.github.io/salespulse-dashboard/
 
 ## Why this project
 
@@ -17,9 +17,11 @@ Most sales dashboards stop at "here are the numbers." SalesPulse tries to answer
 
 ## Tech
 
-Single self-contained `index.html` — no build step, no backend, no dependencies to install.
-- [Chart.js](https://www.chartjs.org/) for charts
-- [SheetJS/xlsx](https://sheetjs.com/) for reading uploaded Excel/CSV files, parsed entirely in the browser
+Plain HTML, CSS, and JavaScript — no build step, no backend, no package manager needed.
+- **HTML** (`index.html`) — page structure and layout
+- **CSS** (`style.css`) — all styling, including light/dark mode
+- **JavaScript** (`script.js`) — data parsing, the problem-finder rules, charts, and the what-if simulator
+- [Chart.js](https://www.chartjs.org/) for charts and [SheetJS/xlsx](https://sheetjs.com/) for reading uploaded Excel/CSV files — both vendored locally under `lib/` (not loaded from a CDN), so the app has no external runtime dependency and your data never leaves the browser
 
 ## Using it
 
@@ -31,15 +33,20 @@ Your file is read entirely client-side — nothing is uploaded to a server.
 
 ## Deploying
 
-Since it's a single static HTML file, any static host works:
+It's a static site (no server-side code), so any static host works:
 
 - **GitHub Pages:** Settings → Pages → Deploy from branch → `main` / root. Your dashboard will be live at `https://<username>.github.io/<repo-name>/`.
-- **Netlify / Vercel:** drag-and-drop the `index.html` file, or connect the repo directly.
+- **Netlify / Vercel:** drag-and-drop the whole project folder, or connect the repo directly.
 
 ## Project structure
 
 ```
-index.html   # the entire app — markup, styles, and logic
+index.html          # page structure
+style.css            # styling
+script.js            # app logic (parsing, problem finder, charts, simulator)
+lib/
+  chart.umd.min.js   # Chart.js (vendored)
+  xlsx.full.min.js   # SheetJS/xlsx (vendored)
 README.md
 ```
 
